@@ -9,10 +9,11 @@ const endScreen = document.querySelector("#end-screen");
 const submitButton = document.querySelector("#submit-button");
 const feedback = document.querySelector("#feedback");
 
-// variables
+// global variables
 let timeLeft = 60; // total time in seconds
 let timerInterval;
 
+// function for timer to countdown from 60 seconds
 function startTimer() {
     timerInterval = setInterval(function() {
     timeLeft--;
@@ -28,4 +29,11 @@ function startTimer() {
     }, 1000); // 1000 milliseconds = 1 second
 }
 
-startButton.addEventListener("click", startTimer);
+// function to start quiz
+function startQuiz() {
+    startScreen.setAttribute("class","hide");
+    questions.setAttribute("class","show");
+    startTimer();
+}
+
+startButton.addEventListener("click", startQuiz);
