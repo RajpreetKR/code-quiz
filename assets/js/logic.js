@@ -10,6 +10,11 @@ const submitButton = document.querySelector("#submit-button");
 const feedback = document.querySelector("#feedback");
 
 // global variables
+let scoreObject = {
+    score : "", initials : ""
+}
+let questionIndex = 0;
+let questionObject;
 let timeLeft = 60; // total time in seconds
 let timerInterval;
 
@@ -29,11 +34,32 @@ function startTimer() {
     }, 1000); // 1000 milliseconds = 1 second
 }
 
+// function to retrieve questions
+function getQuestions() {
+    questionObject = questionsArr[questionIndex];
+    questionTitle.textContent = questionObject.questionTitle;
+    choices.innerHTML = "";
+
+    for (let i = 0; i < questionObject.choices.length; i++) {
+        let el = document.createElement("button");
+        el.textContent = questionObject.choices[i];
+        el.onclick = checkAnswer;
+        choices.appendChild(el); // puts the element into the choices div
+    }
+}
+
+function checkAnswer(event) {
+    let userAnswer = event.target;
+    console.log(answer.textContent);
+
+}
+
 // function to start quiz
 function startQuiz() {
-    startScreen.setAttribute("class","hide");
-    questions.setAttribute("class","show");
+    startScreen.setAttribute("class","hide"); // hides the start screen div
+    questions.setAttribute("class","show"); // shows the questions div
     startTimer();
+    getQuestions();
 }
 
 startButton.addEventListener("click", startQuiz);
