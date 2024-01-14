@@ -54,14 +54,19 @@ function checkAnswer(event) {
 
     if (userAnswer.textContent === questionsArr[questionIndex].answer) {
         questionIndex++;
-        if (questionIndex === questionsArr.length) { // needs fixing
+        if (questionIndex === questionsArr.length) { 
             endQuiz();
         } else {
             getQuestions();
         }
     } else {
         timeLeft -= 10;
-        getQuestions(); // this needs fixing
+        questionIndex++;
+        if (questionIndex === questionsArr.length) { 
+            endQuiz();
+        } else {
+            getQuestions();
+        }
     }
 }
 
