@@ -27,8 +27,7 @@ function startTimer() {
     // check if timeLeft is 0, and end the quiz if it is
     if (timeLeft <= 0) {
         clearInterval(timerInterval);
-        // call for a function to end the quiz here when created
-        
+        endQuiz();
     }
 
     }, 1000); // 1000 milliseconds = 1 second
@@ -48,10 +47,28 @@ function getQuestions() {
     }
 }
 
+// function to check user answer
 function checkAnswer(event) {
     let userAnswer = event.target;
-    console.log(answer.textContent);
+    console.log(userAnswer.textContent);
 
+    if (userAnswer.textContent === questionsArr[questionIndex].answer) {
+        questionIndex++;
+        if (questionIndex === questionsArr.length) { // needs fixing
+            endQuiz();
+        } else {
+            getQuestions();
+        }
+    } else {
+        timeLeft -= 10;
+        getQuestions(); // this needs fixing
+    }
+}
+
+// function to end quiz
+function endQuiz() {
+    questions.setAttribute("class","hide"); // hides the questions div
+    endScreen.setAttribute("class","show"); // shows the end screen div
 }
 
 // function to start quiz
