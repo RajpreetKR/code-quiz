@@ -8,6 +8,7 @@ const choices = document.querySelector("#choices");
 const endScreen = document.querySelector("#end-screen");
 const submitButton = document.querySelector("#submit-button");
 const feedback = document.querySelector("#feedback");
+let initials = document.querySelector("#initials");
 
 // global variables
 let scoreObject = {
@@ -61,9 +62,12 @@ function checkAnswer(event) {
         if (questionIndex === questionsArr.length) { 
             endQuiz();
             correctAudio.play();
+            feedback.setAttribute("class","hide");
         } else {
             getQuestions();
             correctAudio.play();
+            feedback.setAttribute("class","show");
+            feedback.textContent = "Correct!";
         }
     } else {
         timeLeft -= 10;
@@ -71,9 +75,12 @@ function checkAnswer(event) {
         if (questionIndex === questionsArr.length) { 
             endQuiz();
             correctAudio.play();
+            feedback.setAttribute("class","hide");
         } else {
             getQuestions();
             incorrectAudio.play();
+            feedback.setAttribute("class","show");
+            feedback.textContent = "Incorrect!";
         }
     }
 }
