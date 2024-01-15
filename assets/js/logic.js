@@ -60,6 +60,7 @@ function checkAnswer(event) {
         questionIndex++;
         if (questionIndex === questionsArr.length) { 
             endQuiz();
+            correctAudio.play();
         } else {
             getQuestions();
             correctAudio.play();
@@ -69,6 +70,7 @@ function checkAnswer(event) {
         questionIndex++;
         if (questionIndex === questionsArr.length) { 
             endQuiz();
+            correctAudio.play();
         } else {
             getQuestions();
             incorrectAudio.play();
@@ -80,7 +82,7 @@ function checkAnswer(event) {
 function endQuiz() {
     questions.setAttribute("class","hide"); // hides the questions div
     endScreen.setAttribute("class","show"); // shows the end screen div
-
+    clearInterval(timerInterval); // clears interval and stops the timer
 }
 
 // function to start quiz
