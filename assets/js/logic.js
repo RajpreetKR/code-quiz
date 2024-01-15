@@ -8,7 +8,7 @@ const choices = document.querySelector("#choices");
 const endScreen = document.querySelector("#end-screen");
 const submitButton = document.querySelector("#submit-button");
 const feedback = document.querySelector("#feedback");
-let initials = document.querySelector("#initials");
+let finalScore = document.querySelector("#final-score");
 
 // global variables
 let scoreObject = {
@@ -65,7 +65,7 @@ function checkAnswer(event) {
             feedback.setAttribute("class","hide");
         } else {
             getQuestions();
-            correctAudio.play();
+            correctAudio.play(); // plays the audio
             feedback.setAttribute("class","show");
             feedback.textContent = "Correct!";
         }
@@ -90,6 +90,7 @@ function endQuiz() {
     questions.setAttribute("class","hide"); // hides the questions div
     endScreen.setAttribute("class","show"); // shows the end screen div
     clearInterval(timerInterval); // clears interval and stops the timer
+    finalScore.textContent = timeLeft;
 }
 
 // function to start quiz
@@ -100,4 +101,11 @@ function startQuiz() {
     getQuestions();
 }
 
+// function to save the user's score (time remaining)
+function saveUserScore() {
+    let initials = document.getElementById("initials").value;
+    console.log(initials); // testing to see if the initials are being submitted
+}
+
 startButton.addEventListener("click", startQuiz);
+submitButton.addEventListener("click", saveUserScore);
