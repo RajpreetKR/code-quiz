@@ -47,6 +47,10 @@ function getQuestions() {
     }
 }
 
+// audio for correct and incorrect sound
+const correctAudio = new Audio("./assets/sfx/correct.wav"); // retrieves the audio
+const incorrectAudio = new Audio("./assets/sfx/incorrect.wav");
+
 // function to check user answer
 function checkAnswer(event) {
     let userAnswer = event.target;
@@ -58,6 +62,7 @@ function checkAnswer(event) {
             endQuiz();
         } else {
             getQuestions();
+            correctAudio.play();
         }
     } else {
         timeLeft -= 10;
@@ -66,6 +71,7 @@ function checkAnswer(event) {
             endQuiz();
         } else {
             getQuestions();
+            incorrectAudio.play();
         }
     }
 }
@@ -74,6 +80,7 @@ function checkAnswer(event) {
 function endQuiz() {
     questions.setAttribute("class","hide"); // hides the questions div
     endScreen.setAttribute("class","show"); // shows the end screen div
+
 }
 
 // function to start quiz
