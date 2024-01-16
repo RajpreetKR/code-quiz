@@ -88,6 +88,7 @@ function endQuiz() {
     endScreen.setAttribute("class","show"); // shows the end screen div
     clearInterval(timerInterval); // clears interval and stops the timer
     finalScore.textContent = timeLeft;
+    timerDisplay.textContent = timeLeft; // added this so that the timer shows the correct amount of time remaining when the user answers wrong on the last question
 }
 
 // function to start quiz
