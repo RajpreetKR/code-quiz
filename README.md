@@ -7,7 +7,7 @@ This is a challenge I did for my bootcamp. I was tasked to create a quiz about c
 ![Alt text](image.png)
 
 ## Live
-Link: 
+Link: https://rajpreetkr.github.io/code-quiz
 
 ## Credits
 I used the following to help me get my answer and adjusted some of the code I found as needed:
