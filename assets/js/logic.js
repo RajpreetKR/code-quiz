@@ -1,19 +1,16 @@
 // variables calling IDs in the index.html
-const startButton = document.querySelector("#start-button");
+const startBtn = document.querySelector("#start-button");
 const timerDisplay = document.querySelector("#time");
 const startScreen = document.querySelector("#start-screen");
 const questions = document.querySelector("#questions");
 const questionTitle = document.querySelector("#question-title");
 const choices = document.querySelector("#choices");
 const endScreen = document.querySelector("#end-screen");
-const submitButton = document.querySelector("#submit-button");
+const submitBtn = document.querySelector("#submit-button");
 const feedback = document.querySelector("#feedback");
 let finalScore = document.querySelector("#final-score");
 
 // global variables
-let scoreObject = {
-    score : "", initials : ""
-}
 let questionIndex = 0;
 let questionObject;
 let timeLeft = 60; // total time in seconds
@@ -74,7 +71,7 @@ function checkAnswer(event) {
         questionIndex++;
         if (questionIndex === questionsArr.length) { 
             endQuiz();
-            correctAudio.play();
+            incorrectAudio.play();
             feedback.setAttribute("class","hide");
         } else {
             getQuestions();
@@ -105,7 +102,29 @@ function startQuiz() {
 function saveUserScore() {
     let initials = document.getElementById("initials").value;
     console.log(initials); // testing to see if the initials are being submitted
+
+    let userScore = timeLeft;
+    console.log(userScore); // testing to see if the final score is being submitted
+
+    let scoreObject = {
+        score: userScore,
+        initials: initials,
+    };
+
+    let scoresArr;
+
+    if (localStorage.getItem("scores") === null) { // checking to see if there is a scores array in local storage
+        scoresArr = [];
+    } else {
+        scoresArr = JSON.parse(localStorage.getItem("scores"));
+    }
+
+    scoresArr.push(scoreObject); // this will push the user's score into the array
+
+    localStorage.setItem("scores", JSON.stringify(scoresArr));
+
+    window.location.pathname = "./highscores.html";
 }
 
-startButton.addEventListener("click", startQuiz);
-submitButton.addEventListener("click", saveUserScore);
+startBtn.addEventListener("click", startQuiz);
+submitBtn.addEventListener("click", saveUserScore);
